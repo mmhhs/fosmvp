@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.fos.fosmvp.http.Api;
+
 /**
  * Created by mmh on 2018/7/17.
  */
@@ -15,6 +17,7 @@ public class BaseApplication extends Application implements Application.Activity
     public void onCreate() {
         super.onCreate();
         baseApplication = this;
+        Api.initialize();
     }
 
     public static Context getAppContext() {

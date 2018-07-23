@@ -14,7 +14,7 @@ import rx.Observable;
 
 public class LoginModel implements LoginContract.Model {
     @Override
-    public Observable<BaseResponse<UserEntity>> getLoginResultData(Map map) {
+    public Observable<BaseResponse<UserEntity>> getLoginData(Map map) {
         return Api.createApi(ApiService.class).login(map);
     }
 

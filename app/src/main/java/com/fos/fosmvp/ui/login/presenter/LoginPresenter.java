@@ -20,7 +20,7 @@ public class LoginPresenter extends LoginContract.Presenter {
         argMap.put("name", tel);
         argMap.put("password", password);
 
-        Observable<BaseResponse<UserEntity>> observable = Api.initObservable(mModel.getLoginResultData(argMap));
+        Observable<BaseResponse<UserEntity>> observable = Api.initObservable(mModel.getLoginData(argMap));
         mRxManage.add(observable.subscribe(new RxSubscriber<BaseResponse<UserEntity>>(mContext, true) {
 
             @Override

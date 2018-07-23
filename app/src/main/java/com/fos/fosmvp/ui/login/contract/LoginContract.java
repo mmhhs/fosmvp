@@ -14,7 +14,7 @@ import rx.Observable;
 public interface LoginContract {
     interface Model extends BaseModel {
         //请求用户登录信息
-        Observable<BaseResponse<UserEntity>> getLoginResultData(Map map);
+        Observable<BaseResponse<UserEntity>> getLoginData(Map map);
     }
 
     interface View extends BaseView {

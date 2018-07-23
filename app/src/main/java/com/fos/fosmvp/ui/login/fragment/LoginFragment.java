@@ -1,13 +1,11 @@
-package com.fos.fosmvp.ui.login.activity;
+package com.fos.fosmvp.ui.login.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import com.fos.fosmvp.R;
-import com.fos.fosmvp.base.BaseActivity;
+import com.fos.fosmvp.base.BaseFragment;
 import com.fos.fosmvp.base.BaseResponse;
 import com.fos.fosmvp.entity.login.UserEntity;
 import com.fos.fosmvp.ui.login.contract.LoginContract;
@@ -19,9 +17,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Activity使用示例
+ * Fragment使用示例
+ *
  */
-public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> implements LoginContract.View {
+public class LoginFragment extends BaseFragment<LoginPresenter, LoginModel> implements LoginContract.View{
     @BindView(R.id.edt_login_phone)
     EditText loginPhoneEdt;
     @BindView(R.id.edt_login_password)
@@ -30,7 +29,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
     public String password = "";
 
     @Override
-    public int getLayoutId() {
+    protected int getLayoutResource() {
         return R.layout.activity_login;
     }
 
@@ -40,21 +39,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
     }
 
     @Override
-    public void initView(Bundle savedInstanceState) {
+    protected void initView(Bundle savedInstanceState) {
 
     }
-
-    /**
-     * 入口
-     *
-     * @param activity
-     */
-    public static void startAction(Activity activity) {
-        Intent intent = new Intent(activity, LoginActivity.class);
-        activity.startActivity(intent);
-    }
-
-
 
     @OnClick({R.id.btn_user_login})
     public void onViewClicked(View view) {
@@ -75,7 +62,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
     @Override
     public void returnLoginSucceed(UserEntity userEntity) {
         ToastUitl.showShort("登录成功");
-        finish();
     }
 
 
@@ -89,6 +75,4 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
             e.printStackTrace();
         }
     }
-
-
 }

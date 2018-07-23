@@ -78,8 +78,9 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     protected void onDestroy() {
         super.onDestroy();
         try {
-            if (mPresenter != null)
+            if (mPresenter != null){
                 mPresenter.onDestroy();
+            }
             if (mRxManager != null) {
                 mRxManager.clear();
             }
