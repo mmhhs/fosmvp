@@ -1,6 +1,7 @@
 package com.fos.fosmvp.http;
 
 import com.fos.fosmvp.base.BaseResponse;
+import com.fos.fosmvp.entity.login.UserEntity;
 import com.fos.fosmvp.start.FosMvpManager;
 
 import java.util.Map;
@@ -17,7 +18,7 @@ public interface ApiService {
     //登录
     @FormUrlEncoded
     @POST("getLogin.action")
-    Observable<BaseResponse> login(@FieldMap Map<String, String> map);
+    Observable<BaseResponse<UserEntity>> login(@FieldMap Map<String, String> map);
 
     //车联网接口 -实时车况
     @GET(FosMvpManager.PREFIX_URL + "/openapi/iov/business/canBus/getByVinAndCode.json")
