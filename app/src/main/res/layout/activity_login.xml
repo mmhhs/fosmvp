@@ -66,6 +66,7 @@
                 android:id="@+id/btn_user_login"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="@android:color/black"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"

@@ -24,7 +24,7 @@ import rx.Observable;
 public interface ApiService {
     //登录
     @FormUrlEncoded
-    @POST("getLogin.action")
+    @POST("getLoginMember.action")
     Observable<BaseResponse<UserEntity>> login(@FieldMap Map<String, String> map);
 
     //车联网接口 -实时车况

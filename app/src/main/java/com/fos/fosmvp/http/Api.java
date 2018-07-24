@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.fos.fosmvp.base.BaseApplication;
 import com.fos.fosmvp.start.FosMvpManager;
+import com.fos.fosmvp.utils.LogUtils;
 import com.fos.fosmvp.utils.NetWorkUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -78,30 +79,6 @@ public class Api {
         }
     }
 
-    public static Observable initObservable(Observable observable) {
-        return observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    private static void addSubscriber(Subscription subscription) {
-        if ((subscription != null) && (mCompositeSubscription != null))
-            mCompositeSubscription.add(subscription);
-    }
-
-    public void toSubscribe(Observable observable, Observer subscriber) {
-        addSubscriber(observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber));
-    }
-
-    public static void unSubscribe() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
-        }
-    }
-
     /**
      * 创建OkHttpClient
      *
@@ -140,9 +117,9 @@ public class Api {
                         .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
                         .build();
             }
-
+            LogUtils.e("req= "+req.toString());
             Response originalResponse = chain.proceed(req);
-
+            LogUtils.e("response= "+originalResponse.body().string());
             if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
                 //TODO 只要加密的请求需要解密
 
@@ -162,6 +139,30 @@ public class Api {
     private static OkHttpClient getTrustAllSSLClient(OkHttpClient client) {
         client = OkHttpClientUtil.getTrustAllSSLClient(client);
         return client;
+    }
+
+    public static Observable initObservable(Observable observable) {
+        return observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    private static void addSubscriber(Subscription subscription) {
+        if ((subscription != null) && (mCompositeSubscription != null))
+            mCompositeSubscription.add(subscription);
+    }
+
+    public void toSubscribe(Observable observable, Observer subscriber) {
+        addSubscriber(observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
+    }
+
+    public static void unSubscribe() {
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.unsubscribe();
+        }
     }
 
     /**
