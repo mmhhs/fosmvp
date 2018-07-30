@@ -25,9 +25,7 @@ android {
     }
     productFlavors {
     }
-    packagingOptions{
-        exclude 'META-INF/rxjava.properties'
-    }
+
 }
 
 dependencies {
