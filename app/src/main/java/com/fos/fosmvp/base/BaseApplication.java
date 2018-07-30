@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.fos.fosmvp.http.Api;
+import com.fos.fosmvp.start.FosMvpManager;
 import com.fos.fosmvp.utils.LogUtils;
 
 /**
@@ -18,7 +18,7 @@ public class BaseApplication extends Application implements Application.Activity
     public void onCreate() {
         super.onCreate();
         baseApplication = this;
-        Api.initialize();
+        FosMvpManager.init();
         LogUtils.e("---------------start fosmvp----------------"+baseApplication);
     }
 
