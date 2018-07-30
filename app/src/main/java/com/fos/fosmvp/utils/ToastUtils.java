@@ -9,7 +9,7 @@ import com.fos.fosmvp.base.BaseApplication;
 /**
  * Toast统一管理类
  */
-public class ToastUitl {
+public class ToastUtils {
     private static Toast toast;
 
     private static Toast initToast(CharSequence message, int duration) {

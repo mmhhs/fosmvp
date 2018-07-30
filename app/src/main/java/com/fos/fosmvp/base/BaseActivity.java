@@ -53,10 +53,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     //初始化view
     public abstract void initView(Bundle savedInstanceState);
 
-    public void initPresenter2(){
-        mPresenter.setViewModel(this,mModel);
-    }
-
 
     @Override
     protected void onResume() {

@@ -13,7 +13,7 @@ import com.fos.fosmvp.entity.login.UserEntity;
 import com.fos.fosmvp.ui.login.contract.LoginContract;
 import com.fos.fosmvp.ui.login.model.LoginModel;
 import com.fos.fosmvp.ui.login.presenter.LoginPresenter;
-import com.fos.fosmvp.utils.ToastUitl;
+import com.fos.fosmvp.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -74,7 +74,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
 
     @Override
     public void returnLoginSucceed(UserEntity userEntity) {
-        ToastUitl.showShort("登录成功");
+        ToastUtils.showShort("登录成功");
         finish();
     }
 
@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
     public void returnLoginFail(BaseResponse baseResponse,boolean isVisitError) {
         try {
             if (!isVisitError){
-                ToastUitl.showShort(baseResponse.getMsg());
+                ToastUtils.showShort(baseResponse.getMsg());
             }
         } catch (Exception e) {
             e.printStackTrace();
