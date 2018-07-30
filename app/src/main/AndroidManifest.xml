@@ -6,7 +6,7 @@
     <application android:name=".base.BaseApplication" android:allowBackup="true" android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.login.activity.LoginActivity"
+            android:name="com.fos.fosmvp.ui.login.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">

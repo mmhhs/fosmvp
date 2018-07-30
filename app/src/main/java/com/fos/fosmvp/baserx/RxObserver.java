@@ -6,44 +6,43 @@ import com.fos.fosmvp.base.BaseApplication;
 import com.fos.fosmvp.start.FosMvpManager;
 import com.fos.fosmvp.utils.NetWorkUtils;
 
-import rx.Subscriber;
+import io.reactivex.observers.DisposableObserver;
+
 
 /**
  * 订阅封装
  *
  */
-public abstract class RxSubscriber<T> extends Subscriber<T> {
+public abstract class RxObserver<T> extends DisposableObserver<T> {
     private Context mContext;
     private String msg;
     private boolean showDialog = true;
 
-    public RxSubscriber(Context context, String msg, boolean showDialog) {
+    public RxObserver(Context context, String msg, boolean showDialog) {
         this.mContext = context;
         this.msg = msg;
         this.showDialog = showDialog;
     }
 
-    public RxSubscriber(Context context) {
+    public RxObserver(Context context) {
         this(context, FosMvpManager.TASK_LOADING, false);
     }
 
-    public RxSubscriber(Context context, boolean showDialog) {
+    public RxObserver(Context context, boolean showDialog) {
         this(context, FosMvpManager.TASK_LOADING, showDialog);
     }
 
-    @Override
-    public void onCompleted() {
-        //TODO 关闭加载框
-
-    }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        //TODO 判断是否显示加载框
-
+        //TODO 开启加载框
     }
 
+    @Override
+    public void onComplete() {
+        //TODO 关闭加载框
+    }
 
     @Override
     public void onNext(T t) {

@@ -9,7 +9,8 @@ import com.fos.fosmvp.entity.login.UserEntity;
 
 import java.util.Map;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 public interface LoginContract {
     interface Model extends BaseModel {

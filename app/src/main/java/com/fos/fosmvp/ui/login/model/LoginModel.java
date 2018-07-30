@@ -9,7 +9,7 @@ import com.fos.fosmvp.ui.login.contract.LoginContract;
 
 import java.util.Map;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 
 public class LoginModel implements LoginContract.Model {

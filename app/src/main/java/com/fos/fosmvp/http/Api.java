@@ -19,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -28,14 +31,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.Observer;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -54,7 +51,6 @@ public class Api {
 
     private static volatile Retrofit retrofit;
 
-    private static CompositeSubscription mCompositeSubscription = new CompositeSubscription();
 
     public static <T> T createApi(Class<T> paramClass) {
         return retrofit.create(paramClass);
@@ -73,7 +69,7 @@ public class Api {
                     .Builder()
                     .client(getOkHttpClient())
                     .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .baseUrl(baseUrl)
                     .build();
         }
@@ -145,24 +141,6 @@ public class Api {
         return observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    private static void addSubscriber(Subscription subscription) {
-        if ((subscription != null) && (mCompositeSubscription != null))
-            mCompositeSubscription.add(subscription);
-    }
-
-    public void toSubscribe(Observable observable, Observer subscriber) {
-        addSubscriber(observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber));
-    }
-
-    public static void unSubscribe() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
-        }
     }
 
     /**
