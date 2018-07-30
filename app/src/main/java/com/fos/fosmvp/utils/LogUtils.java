@@ -6,7 +6,7 @@ import android.util.Log;
  * 日志打印类
  */
 public class LogUtils {
-	private static boolean isDebug = false;
+	private static boolean isDebug = true;
 	private static final String TAG = "LogUtils";
 
 	public static void out(String msg) {

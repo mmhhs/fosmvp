@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.fos.fosmvp.http.Api;
+import com.fos.fosmvp.utils.LogUtils;
 
 /**
  * Created by mmh on 2018/7/17.
@@ -18,6 +19,7 @@ public class BaseApplication extends Application implements Application.Activity
         super.onCreate();
         baseApplication = this;
         Api.initialize();
+        LogUtils.e("---------------start fosmvp----------------"+baseApplication);
     }
 
     public static Context getAppContext() {
