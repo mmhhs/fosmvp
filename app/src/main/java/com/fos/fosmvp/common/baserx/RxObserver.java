@@ -76,7 +76,7 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
             _onError(FosMvpManager.TASK_LINK_ERROR);
             errorMsg = FosMvpManager.TASK_LINK_ERROR;
         }
-        
+
         //TODO 关闭加载框
         if (showDialog&&showStyle==0){
             loadViewUtil.showErrorView(errorMsg);
@@ -105,4 +105,17 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
     public void setShowDialog(boolean showDialog) {
         this.showDialog = showDialog;
     }
+
+    /**
+     * 设置加载框默认值
+     * @param showStyle 加载框类型：0：视图内加载；1：弹窗加载
+     * @param message 加载提示文字
+     * @param contentView 内容视图 视图内加载时，必须要传
+     */
+    public void setDialogStyle(int showStyle,String message,View contentView) {
+        this.showStyle = showStyle;
+        this.message = message;
+        this.contentView = contentView;
+    }
+
 }
