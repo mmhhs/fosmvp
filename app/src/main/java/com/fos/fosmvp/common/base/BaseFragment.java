@@ -1,4 +1,4 @@
-package com.fos.fosmvp.base;
+package com.fos.fosmvp.common.base;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fos.fosmvp.baserx.RxManager;
-import com.fos.fosmvp.utils.TUtil;
+import com.fos.fosmvp.common.baserx.RxManager;
+import com.fos.fosmvp.common.utils.TUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

@@ -1,13 +1,13 @@
-package com.fos.fosmvp.base;
+package com.fos.fosmvp.common.base;
 
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.fos.fosmvp.baserx.RxManager;
-import com.fos.fosmvp.utils.AppManager;
-import com.fos.fosmvp.utils.TUtil;
+import com.fos.fosmvp.common.baserx.RxManager;
+import com.fos.fosmvp.common.utils.AppManager;
+import com.fos.fosmvp.common.utils.TUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

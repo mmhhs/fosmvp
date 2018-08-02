@@ -1,8 +1,8 @@
-package com.fos.fosmvp.http;
+package com.fos.fosmvp.common.http;
 
-import com.fos.fosmvp.base.BaseResponse;
+import com.fos.fosmvp.common.base.BaseResponse;
 import com.fos.fosmvp.entity.login.UserEntity;
-import com.fos.fosmvp.start.FosMvpManager;
+import com.fos.fosmvp.common.start.FosMvpManager;
 
 import java.util.List;
 import java.util.Map;

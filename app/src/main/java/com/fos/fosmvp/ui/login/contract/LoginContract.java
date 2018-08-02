@@ -1,10 +1,10 @@
 package com.fos.fosmvp.ui.login.contract;
 
 
-import com.fos.fosmvp.base.BaseModel;
-import com.fos.fosmvp.base.BasePresenter;
-import com.fos.fosmvp.base.BaseResponse;
-import com.fos.fosmvp.base.BaseView;
+import com.fos.fosmvp.common.base.BaseModel;
+import com.fos.fosmvp.common.base.BasePresenter;
+import com.fos.fosmvp.common.base.BaseResponse;
+import com.fos.fosmvp.common.base.BaseView;
 import com.fos.fosmvp.entity.login.UserEntity;
 
 import java.util.Map;

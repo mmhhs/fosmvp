@@ -5,13 +5,13 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.fos.fosmvp.R;
-import com.fos.fosmvp.base.BaseFragment;
-import com.fos.fosmvp.base.BaseResponse;
+import com.fos.fosmvp.common.base.BaseFragment;
+import com.fos.fosmvp.common.base.BaseResponse;
 import com.fos.fosmvp.entity.login.UserEntity;
 import com.fos.fosmvp.ui.login.contract.LoginContract;
 import com.fos.fosmvp.ui.login.model.LoginModel;
 import com.fos.fosmvp.ui.login.presenter.LoginPresenter;
-import com.fos.fosmvp.utils.ToastUtils;
+import com.fos.fosmvp.common.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

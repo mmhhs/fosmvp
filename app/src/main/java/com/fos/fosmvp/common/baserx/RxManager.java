@@ -1,4 +1,4 @@
-package com.fos.fosmvp.baserx;
+package com.fos.fosmvp.common.baserx;
 
 
 import io.reactivex.disposables.CompositeDisposable;

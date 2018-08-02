@@ -1,4 +1,4 @@
-package com.fos.fosmvp.base;
+package com.fos.fosmvp.common.base;
 
 /**
  * baseview

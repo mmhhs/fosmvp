@@ -1,9 +1,9 @@
-package com.fos.fosmvp.utils;
+package com.fos.fosmvp.common.utils;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.fos.fosmvp.base.BaseApplication;
+import com.fos.fosmvp.common.base.BaseApplication;
 
 
 /**

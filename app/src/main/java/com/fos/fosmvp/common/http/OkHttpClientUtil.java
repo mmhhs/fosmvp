@@ -1,4 +1,4 @@
-package com.fos.fosmvp.http;
+package com.fos.fosmvp.common.http;
 
 import android.content.Context;
 import android.text.TextUtils;

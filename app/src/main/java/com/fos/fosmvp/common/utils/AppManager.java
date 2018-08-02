@@ -1,5 +1,5 @@
 
-package com.fos.fosmvp.utils;
+package com.fos.fosmvp.common.utils;
 
 import android.app.Activity;
 import android.app.ActivityManager;

@@ -1,12 +1,12 @@
-package com.fos.fosmvp.base;
+package com.fos.fosmvp.common.base;
 
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.fos.fosmvp.start.FosMvpManager;
-import com.fos.fosmvp.utils.LogUtils;
+import com.fos.fosmvp.common.start.FosMvpManager;
+import com.fos.fosmvp.common.utils.LogUtils;
 
 /**
  * Created by mmh on 2018/7/17.

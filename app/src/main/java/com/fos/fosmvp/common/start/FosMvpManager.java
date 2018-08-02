@@ -1,7 +1,7 @@
-package com.fos.fosmvp.start;
+package com.fos.fosmvp.common.start;
 
-import com.fos.fosmvp.http.Api;
-import com.fos.fosmvp.utils.LogUtils;
+import com.fos.fosmvp.common.http.Api;
+import com.fos.fosmvp.common.utils.LogUtils;
 
 /**
  * 框架初始化

@@ -1,12 +1,12 @@
-package com.fos.fosmvp.http;
+package com.fos.fosmvp.common.http;
 
 
 import android.text.TextUtils;
 
-import com.fos.fosmvp.base.BaseApplication;
-import com.fos.fosmvp.start.FosMvpManager;
-import com.fos.fosmvp.utils.LogUtils;
-import com.fos.fosmvp.utils.NetWorkUtils;
+import com.fos.fosmvp.common.base.BaseApplication;
+import com.fos.fosmvp.common.start.FosMvpManager;
+import com.fos.fosmvp.common.utils.LogUtils;
+import com.fos.fosmvp.common.utils.NetWorkUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

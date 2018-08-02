@@ -1,8 +1,8 @@
-package com.fos.fosmvp.base;
+package com.fos.fosmvp.common.base;
 
 import android.content.Context;
 
-import com.fos.fosmvp.baserx.RxManager;
+import com.fos.fosmvp.common.baserx.RxManager;
 
 
 /**

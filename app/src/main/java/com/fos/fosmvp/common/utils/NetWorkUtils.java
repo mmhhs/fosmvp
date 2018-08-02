@@ -1,4 +1,4 @@
-package com.fos.fosmvp.utils;
+package com.fos.fosmvp.common.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

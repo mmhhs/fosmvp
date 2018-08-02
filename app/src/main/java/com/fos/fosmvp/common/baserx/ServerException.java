@@ -1,4 +1,4 @@
-package com.fos.fosmvp.baserx;
+package com.fos.fosmvp.common.baserx;
 
 /**
  * 服务器请求异常
