@@ -1,10 +1,12 @@
 package com.fos.fosmvp.common.baserx;
 
 import android.content.Context;
+import android.view.View;
 
 import com.fos.fosmvp.common.base.BaseApplication;
 import com.fos.fosmvp.common.start.FosMvpManager;
 import com.fos.fosmvp.common.utils.NetWorkUtils;
+import com.fos.fosmvp.common.view.LoadViewUtil;
 
 import io.reactivex.observers.DisposableObserver;
 
@@ -15,33 +17,40 @@ import io.reactivex.observers.DisposableObserver;
  */
 public abstract class RxObserver<T> extends DisposableObserver<T> {
     private Context mContext;
-    private String msg;
-    private boolean showDialog = true;
+    private boolean showDialog = true;//是否显示加载框
+    private int showStyle = 1;//加载框类型：0：视图内加载；1：弹窗加载
+    private String message;//加载提示文字
+    private View contentView;//内容视图
+    private LoadViewUtil loadViewUtil;
 
-    public RxObserver(Context context, String msg, boolean showDialog) {
+    public RxObserver(Context context, boolean showDialog) {
         this.mContext = context;
-        this.msg = msg;
         this.showDialog = showDialog;
     }
 
     public RxObserver(Context context) {
-        this(context, FosMvpManager.TASK_LOADING, false);
+        this(context, false);
     }
-
-    public RxObserver(Context context, boolean showDialog) {
-        this(context, FosMvpManager.TASK_LOADING, showDialog);
-    }
-
 
     @Override
     protected void onStart() {
         super.onStart();
         //TODO 开启加载框
+        if (showDialog){
+            LoadViewUtil.Builder builder = new LoadViewUtil.Builder(mContext)
+                    .setMessage(message)
+                    .setShowStyle(showStyle);
+            loadViewUtil = builder.create(contentView);
+            loadViewUtil.showLoadView();
+        }
     }
 
     @Override
     public void onComplete() {
         //TODO 关闭加载框
+        if (showDialog){
+            loadViewUtil.hideLoadView();
+        }
     }
 
     @Override
@@ -52,17 +61,25 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
-        //TODO 关闭加载框
 
+        String errorMsg = "";
         if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
             //没有网络
             _onError(FosMvpManager.TASK_NO_NETWORK);
+            errorMsg = FosMvpManager.TASK_NO_NETWORK;
         } else if (e instanceof ServerException) {
             //服务器
             _onError(e.getMessage());
+            errorMsg = e.getMessage();
         } else {
             //其它
             _onError(FosMvpManager.TASK_LINK_ERROR);
+            errorMsg = FosMvpManager.TASK_LINK_ERROR;
+        }
+        
+        //TODO 关闭加载框
+        if (showDialog&&showStyle==0){
+            loadViewUtil.showErrorView(errorMsg);
         }
     }
 
