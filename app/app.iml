@@ -26,7 +26,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="jvmTarget" value="1.8" />
-          <option name="languageVersion" value="1.1" />
+          <option name="languageVersion" value="1.2" />
           <option name="apiVersion" value="1.1" />
           <option name="pluginOptions">
             <array>
@@ -118,8 +118,8 @@
     <orderEntry type="library" exported="" name="com.squareup.okhttp3:okhttp:3.10.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.okio:okio:1.14.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-media-compat-26.0.2" level="project" />
-    <orderEntry type="library" exported="" name="org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-26.0.2" level="project" />
+    <orderEntry type="library" exported="" name="org.jetbrains.kotlin:kotlin-stdlib-common:1.2.61@jar" level="project" />
     <orderEntry type="library" exported="" name="com.github.zzz40500:android-shapeLoadingView-1.0.3.2" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-fragment-26.0.2" level="project" />
     <orderEntry type="library" exported="" name="com.nineoldandroids:library:2.4.0@jar" level="project" />
@@ -128,6 +128,7 @@
     <orderEntry type="library" exported="" name="com.android.support:support-core-utils-26.0.2" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-core-ui-26.0.2" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.okhttp3:logging-interceptor:3.1.2@jar" level="project" />
+    <orderEntry type="library" exported="" name="org.jetbrains.kotlin:kotlin-stdlib:1.2.61@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-compat-26.0.2" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-annotations:26.0.2@jar" level="project" />
@@ -136,7 +137,7 @@
     <orderEntry type="library" exported="" name="com.squareup.retrofit2:retrofit:2.4.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-v4-26.0.2" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.retrofit2:converter-gson:2.4.0@jar" level="project" />
-    <orderEntry type="library" exported="" name="org.jetbrains.kotlin:kotlin-stdlib:1.1.51@jar" level="project" />
+    <orderEntry type="library" exported="" name="org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.61@jar" level="project" />
     <orderEntry type="library" exported="" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
     <orderEntry type="library" exported="" name="org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:animated-vector-drawable-26.0.2" level="project" />

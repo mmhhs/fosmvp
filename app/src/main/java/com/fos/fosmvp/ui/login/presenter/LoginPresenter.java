@@ -19,24 +19,24 @@ public class LoginPresenter extends LoginContract.Presenter {
         Map<String, Object> argMap = new HashMap<>();
         argMap.put("name", tel);
         argMap.put("password", password);
-        Observable<BaseResponse<UserEntity>> observable = Api.initObservable(mModel.getLoginData(argMap));
-        RxObserver rxObserver = new RxObserver<BaseResponse<UserEntity>>(BaseApplication.getAppContext()) {
+        Observable<BaseResponse<UserEntity>> observable = Api.initObservable(getMModel().getLoginData(argMap));
+        RxObserver rxObserver = new RxObserver<BaseResponse<UserEntity>>(BaseApplication.Companion.getAppContext()) {
             @Override
             protected void _onNext(BaseResponse<UserEntity> res) {
                 if (res.isSucceed()) {
-                    mView.returnLoginSucceed(res.getData());
+                    getMView().returnLoginSucceed(res.getData());
                 } else {
-                    mView.returnLoginFail(res, false);
+                    getMView().returnLoginFail(res, false);
                 }
             }
 
             @Override
             protected void _onError(String message) {
-                mView.returnLoginFail(null, true);
+                getMView().returnLoginFail(null, true);
             }
         };
         observable.subscribe(rxObserver);
-        mRxManage.add(rxObserver);
+        getMRxManage().add(rxObserver);
     }
 
 

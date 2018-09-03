@@ -108,15 +108,15 @@ public class Api {
             String lock = req.header("lock");
             //TODO 对请求参数进行加密处理
 
-            if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+            if (!NetWorkUtils.isNetConnected(BaseApplication.Companion.getAppContext())) {
                 req = req.newBuilder()
                         .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
                         .build();
             }
-            LogUtils.e("req= "+req.toString());
+            LogUtils.INSTANCE.e("req= "+req.toString());
             Response originalResponse = chain.proceed(req);
-            LogUtils.e("response= "+originalResponse.body().string());
-            if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+            LogUtils.INSTANCE.e("response= "+originalResponse.body().string());
+            if (NetWorkUtils.isNetConnected(BaseApplication.Companion.getAppContext())) {
                 //TODO 只要加密的请求需要解密
 
                 return  originalResponse;

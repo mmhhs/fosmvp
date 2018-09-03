@@ -63,7 +63,7 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
         e.printStackTrace();
 
         String errorMsg = "";
-        if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+        if (!NetWorkUtils.isNetConnected(BaseApplication.Companion.getAppContext())) {
             //没有网络
             _onError(FosMvpManager.TASK_NO_NETWORK);
             errorMsg = FosMvpManager.TASK_NO_NETWORK;

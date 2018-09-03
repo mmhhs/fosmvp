@@ -22,7 +22,7 @@ public class FosMvpManager {
 
     public static void init(){
         Api.initialize();
-        LogUtils.setShowLogEnabled(DEBUGGING);
+        LogUtils.INSTANCE.setShowLogEnabled(DEBUGGING);
 
 
     }

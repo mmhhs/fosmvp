@@ -14,7 +14,7 @@ public class ToastUtils {
 
     private static Toast initToast(CharSequence message, int duration) {
         if (toast == null) {
-            toast = Toast.makeText(BaseApplication.getAppContext(), message, duration);
+            toast = Toast.makeText(BaseApplication.Companion.getAppContext(), message, duration);
         } else {
             toast.setText(message);
             toast.setDuration(duration);
@@ -39,7 +39,7 @@ public class ToastUtils {
      */
     public static void showShort(int strResId) {
 //		Toast.makeText(context, strResId, Toast.LENGTH_SHORT).show();
-        initToast(BaseApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_SHORT).show();
+        initToast(BaseApplication.Companion.getAppContext().getResources().getText(strResId), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -57,7 +57,7 @@ public class ToastUtils {
      * @param strResId
      */
     public static void showLong(int strResId) {
-        initToast(BaseApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_LONG).show();
+        initToast(BaseApplication.Companion.getAppContext().getResources().getText(strResId), Toast.LENGTH_LONG).show();
     }
 
     /**

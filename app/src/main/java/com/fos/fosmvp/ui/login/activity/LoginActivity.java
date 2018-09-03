@@ -36,7 +36,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
 
     @Override
     public void initPresenter() {
-        mPresenter.setViewModel(this, mModel);
+        getMPresenter().setViewModel(this, getMModel());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginModel> impl
     public void login() {
         tel = loginPhoneEdt.getText().toString();
         password = loginPassEdt.getText().toString();
-        mPresenter.getLoginRequest(tel,password);
+        getMPresenter().getLoginRequest(tel,password);
     }
 
     @Override
