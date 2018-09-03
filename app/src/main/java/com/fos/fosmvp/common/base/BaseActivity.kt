@@ -17,6 +17,7 @@ abstract class BaseActivity<T : BasePresenter<*, *>, E : BaseModel> : AppCompatA
     var mContext: Context? = null
     var mRxManager: RxManager? = null
     private var isConfigChange = false
+    var appManager: AppManager? =null;
 
 
     /*********************
@@ -27,17 +28,23 @@ abstract class BaseActivity<T : BasePresenter<*, *>, E : BaseModel> : AppCompatA
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isConfigChange = false
-        mRxManager = RxManager()
-        setContentView(layoutId)
-        mContext = this
-        mPresenter = TUtil.getT<T>(this, 0)
-        mModel = TUtil.getT<E>(this, 1)
-        if (mPresenter != null) {
-            mPresenter!!.mContext = this
+        try {
+            isConfigChange = false
+            mRxManager = RxManager()
+            setContentView(layoutId)
+            mContext = this
+            mPresenter = TUtil.getT<T>(this, 0)
+            mModel = TUtil.getT<E>(this, 1)
+            if (mPresenter != null) {
+                mPresenter!!.mContext = this
+            }
+            this.initPresenter()
+            this.initView(savedInstanceState)
+            appManager = AppManager.appManager
+            if (appManager!=null)
+                appManager!!.addActivity(this)
+        } catch (e: Exception) {
         }
-        this.initPresenter()
-        this.initView(savedInstanceState)
     }
 
     //简单页面无需mvp就不用管此方法即可,完美兼容各种实际场景的变通
@@ -69,13 +76,23 @@ abstract class BaseActivity<T : BasePresenter<*, *>, E : BaseModel> : AppCompatA
             if (mRxManager != null) {
                 mRxManager!!.clear()
             }
-            if (!isConfigChange) {
-                AppManager.getAppManager().finishActivity(this)
+            try {
+                if (!isConfigChange) {
+                    appManager!!.finishActivity(this)
+                }
+            } catch (e: Exception) {
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
+    }
+
+    public fun finishActivity(){
+        try {
+            appManager!!.finishActivity(this)
+        } catch (e: Exception) {
+        }
     }
 
 }
