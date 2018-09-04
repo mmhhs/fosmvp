@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.fos.fosmvp.R
-import com.mingle.widget.LoadingView
 
 /**
  * 加载、空、错误视图
@@ -20,7 +19,8 @@ class LoadViewUtil(private val mContext: Context, private val contentView: View?
     private var mParentView: View? = null//内容父视图
 
     private var mView: View? = null
-    private var loadingView: LoadingView? = null//加载视图
+    private var loadingView: LinearLayout? = null//加载视图
+    private var txtLoadingTip: TextView? = null//加载提示
     private var layoutError: LinearLayout? = null//错误视图
     private var imgIcon: ImageView? = null//图标
     private var txtTip: TextView? = null//提示
@@ -99,7 +99,8 @@ class LoadViewUtil(private val mContext: Context, private val contentView: View?
     private fun initView() {
         if (mView == null) {
             mView = mInFlater!!.inflate(R.layout.item_load, null)
-            loadingView = mView!!.findViewById<View>(R.id.view_loading) as LoadingView
+            loadingView = mView!!.findViewById<View>(R.id.layout_loading) as LinearLayout
+            txtLoadingTip = mView!!.findViewById<View>(R.id.txt_tip) as TextView
             layoutError = mView!!.findViewById<View>(R.id.layout_error) as LinearLayout
             imgIcon = mView!!.findViewById<View>(R.id.img_icon) as ImageView
             txtTip = mView!!.findViewById<View>(R.id.txt_tip) as TextView
@@ -189,10 +190,12 @@ class LoadViewUtil(private val mContext: Context, private val contentView: View?
             STATE_ERROR -> {
                 mView!!.visibility = View.VISIBLE
                 layoutError!!.visibility = View.VISIBLE
+                setIcon(R.mipmap.ic_error)
             }
             STATE_EMPTY -> {
                 mView!!.visibility = View.VISIBLE
                 layoutError!!.visibility = View.VISIBLE
+                setIcon(R.mipmap.ic_empty)
             }
             STATE_LOADING -> {
                 mView!!.visibility = View.VISIBLE
@@ -207,7 +210,7 @@ class LoadViewUtil(private val mContext: Context, private val contentView: View?
     }
 
     fun setLoadText(tip: String) {
-        loadingView!!.setLoadingText(tip)
+        txtLoadingTip!!.text = tip
     }
 
     fun setText(textView: TextView, tip: String) {

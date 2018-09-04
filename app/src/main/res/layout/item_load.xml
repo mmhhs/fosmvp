@@ -7,10 +7,36 @@
     android:orientation="vertical"
     android:id="@+id/layout_empty">
 
-    <com.mingle.widget.LoadingView
-        android:id="@+id/view_loading"
+    <LinearLayout
+        android:id="@+id/layout_loading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/tran"
+        android:paddingBottom="10dp"
+        android:paddingLeft="21dp"
+        android:paddingRight="21dp"
+        android:paddingTop="10dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/shape_loading"
+            android:indeterminateOnly="true" />
+
+        <TextView
+            android:id="@+id/txt_loading_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="loading..."
+            android:textColor="@color/text_grey_light"
+            android:textSize="15sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +48,7 @@
             android:id="@+id/img_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/ic_loading"
+            android:background="@mipmap/ic_error"
             />
 
         <TextView

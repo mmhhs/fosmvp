@@ -29,6 +29,8 @@
     <color name="text_black">#000000</color>
     <color name="text_grey_light">#688f8e99</color>
 
+    <color name="tran">#90000000</color>
+
 
 
 </resources>
