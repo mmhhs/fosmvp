@@ -5,9 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 
-import com.fos.fosmvp.common.start.FosMvpManager
-import com.fos.fosmvp.common.utils.LogUtils
-
 /**
  * Created by mmh on 2018/7/17.
  */
@@ -16,8 +13,6 @@ class BaseApplication : Application(), Application.ActivityLifecycleCallbacks {
     override fun onCreate() {
         super.onCreate()
         baseApplication = this
-        FosMvpManager.init()
-        LogUtils.e("---------------start fosmvp----------------" + baseApplication!!)
     }
 
     override fun onTerminate() {

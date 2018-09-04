@@ -18,7 +18,7 @@
         android:paddingLeft="21dp"
         android:paddingRight="21dp"
         android:paddingTop="10dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ProgressBar
             android:layout_width="35dp"

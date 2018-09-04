@@ -2,12 +2,10 @@ package com.fos.fosmvp.common.baserx
 
 import android.content.Context
 import android.view.View
-
 import com.fos.fosmvp.common.base.BaseApplication
-import com.fos.fosmvp.common.start.FosMvpManager
 import com.fos.fosmvp.common.utils.NetWorkUtils
 import com.fos.fosmvp.common.view.LoadViewUtil
-
+import com.fos.fosmvp.start.FosMvpManager
 import io.reactivex.observers.DisposableObserver
 
 

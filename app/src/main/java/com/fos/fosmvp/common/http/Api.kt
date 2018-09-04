@@ -3,9 +3,9 @@ package com.fos.fosmvp.common.http
 
 import android.text.TextUtils
 import com.fos.fosmvp.common.base.BaseApplication
-import com.fos.fosmvp.common.start.FosMvpManager
 import com.fos.fosmvp.common.utils.LogUtils
 import com.fos.fosmvp.common.utils.NetWorkUtils
+import com.fos.fosmvp.start.FosMvpManager
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -88,7 +88,7 @@ object Api {
     }
 
     fun initialize() {
-        initRetrofit(FosMvpManager.PREFIX_URL)
+        initRetrofit(FosMvpManager.getPrefixUrl())
     }
 
     private fun initRetrofit(baseUrl: String) {
