@@ -7,18 +7,16 @@ import com.fos.fosmvp.common.baserx.RxObserver
 import com.fos.fosmvp.common.http.Api
 import com.fos.fosmvp.entity.login.UserEntity
 import com.fos.fosmvp.ui.login.contract.LoginContract
-import io.reactivex.Observer
-
+import io.reactivex.Observable
 
 
 class LoginPresenter : LoginContract.Presenter() {
     override fun getLoginRequest(tel: String, password: String) {
-        var rxObserver: Observer<BaseResponse<UserEntity>>? = null
         val argMap = HashMap<String, String>()
         argMap.put("name", tel)
         argMap.put("password", password)
-        val observable = Api.initObservable(mModel!!.getLoginData(argMap))
-        rxObserver = object : RxObserver<BaseResponse<UserEntity>>(BaseApplication.appContext!!) {
+        var observable : Observable<BaseResponse<UserEntity>> = Api.initObservable(mModel!!.getLoginData(argMap)) as Observable<BaseResponse<UserEntity>>
+        var rxObserver = object : RxObserver<BaseResponse<UserEntity>>(BaseApplication.appContext!!) {
             override fun _onNext(res: BaseResponse<UserEntity>) {
                 if (res.isSucceed) {
                     mView!!.returnLoginSucceed(res.data!!)
@@ -31,7 +29,7 @@ class LoginPresenter : LoginContract.Presenter() {
                 mView!!.returnLoginFail(null, true)
             }
         }
-//        observable.subscribe(rxObserver)
+        observable.subscribe(rxObserver)
         mRxManage.add(rxObserver)
     }
 

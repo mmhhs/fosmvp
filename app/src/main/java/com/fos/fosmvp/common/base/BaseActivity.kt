@@ -17,7 +17,7 @@ abstract class BaseActivity<T : BasePresenter<*, *>, E : BaseModel> : AppCompatA
     var mContext: Context? = null
     var mRxManager: RxManager? = null
     private var isConfigChange = false
-    var appManager: AppManager? =null;
+    var appManager: AppManager? =null
 
 
     /*********************
