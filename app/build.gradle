@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'android-apt'//for library
+apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
     compileSdkVersion 26
@@ -42,6 +42,15 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+publish {
+    userOrg = 'mmh199'//bintray.com用户名
+    groupId = 'com.fos'//jcenter上的路径
+    artifactId = 'fosmvp'//项目名称
+    publishVersion = '1.0'//版本号
+    desc = 'MVP framework written in kotlin, retrofit2+rxjava2'
+    website = 'https://github.com/mmhhs/fosmvp.git'
 }
 
 
