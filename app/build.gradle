@@ -45,7 +45,7 @@ repositories {
 }
 
 publish {
-    userOrg = 'mmh199'//bintray.com用户名
+    userOrg = 'mmhhs'//bintray.com用户名
     groupId = 'com.fos'//jcenter上的路径
     artifactId = 'fosmvp'//项目名称
     publishVersion = '1.0'//版本号
