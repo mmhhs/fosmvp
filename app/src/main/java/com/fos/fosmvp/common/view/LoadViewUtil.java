@@ -220,10 +220,12 @@ public class LoadViewUtil {
             case STATE_ERROR:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
+                setIcon(R.mipmap.ic_error);
                 break;
             case STATE_EMPTY:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
+                setIcon(R.mipmap.ic_empty);
                 break;
             case STATE_LOADING:
                 mView.setVisibility(View.VISIBLE);
