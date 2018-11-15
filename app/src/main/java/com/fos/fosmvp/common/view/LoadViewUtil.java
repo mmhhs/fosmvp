@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fos.fosmvp.R;
-import com.mingle.widget.LoadingView;
 
 /**
  * 加载、空、错误视图
@@ -26,12 +25,13 @@ public class LoadViewUtil {
     private View mParentView;//内容父视图
 
     private View mView;
-    private LoadingView loadingView;//加载视图
+    private LinearLayout loadingView;//加载视图
     private LinearLayout layoutError;//错误视图
     private ImageView imgIcon;//图标
     private TextView txtTip;//提示
     private TextView txtRetry;//重试
     private TextView txtOpt;//操作按钮
+    private TextView txtLoadingTip;//加载提示
 
     private LayoutInflater mInFlater;
     private ViewGroup mRootGroupView;
@@ -116,12 +116,13 @@ public class LoadViewUtil {
     private void initView() {
         if (mView == null) {
             mView = mInFlater.inflate(R.layout.item_load, null);
-            loadingView = (LoadingView) mView.findViewById(R.id.view_loading);
+            loadingView = (LinearLayout) mView.findViewById(R.id.layout_loading);
             layoutError = (LinearLayout) mView.findViewById(R.id.layout_error);
             imgIcon = (ImageView) mView.findViewById(R.id.img_icon);
             txtTip = (TextView) mView.findViewById(R.id.txt_tip);
             txtRetry = (TextView) mView.findViewById(R.id.txt_retry);
             txtOpt = (TextView) mView.findViewById(R.id.txt_opt);
+            txtLoadingTip = (TextView) mView.findViewById(R.id.txt_loading_tip);
             layoutError.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -242,7 +243,7 @@ public class LoadViewUtil {
     }
 
     public void setLoadText(String tip) {
-        loadingView.setLoadingText(tip);
+        txtLoadingTip.setText(tip);
     }
 
     public void setText(TextView textView, String tip) {
