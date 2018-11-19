@@ -1,4 +1,4 @@
-package com.fos.fosmvp.common.start;
+package com.fos.fosmvp.start;
 
 import com.fos.fosmvp.common.http.Api;
 import com.fos.fosmvp.common.utils.LogUtils;
@@ -20,11 +20,22 @@ public class FosMvpManager {
     /** 是否调试 */
     public static boolean DEBUGGING = true;
 
+    /**
+     * 初始化框架
+     *
+     */
     public static void init(){
         Api.initialize();
         LogUtils.setShowLogEnabled(DEBUGGING);
 
-
     }
 
+    /**
+     * 设置调试模式
+     * @param DEBUGGING 是：true，否：false
+     */
+    public static void setDEBUGGING(boolean DEBUGGING) {
+        FosMvpManager.DEBUGGING = DEBUGGING;
+        LogUtils.setShowLogEnabled(DEBUGGING);
+    }
 }

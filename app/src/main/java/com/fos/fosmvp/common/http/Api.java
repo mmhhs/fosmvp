@@ -4,16 +4,19 @@ package com.fos.fosmvp.common.http;
 import android.text.TextUtils;
 
 import com.fos.fosmvp.common.base.BaseApplication;
-import com.fos.fosmvp.common.start.FosMvpManager;
 import com.fos.fosmvp.common.utils.LogUtils;
 import com.fos.fosmvp.common.utils.NetWorkUtils;
+import com.fos.fosmvp.common.utils.StringUtils;
+import com.fos.fosmvp.start.FosMvpManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -23,6 +26,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.CacheControl;
+import okhttp3.FormBody;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -30,6 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -40,16 +45,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  */
 public class Api {
-    //读超时长，单位：毫秒
-    public static final int READ_TIME_OUT = 60 * 1000;
-    //连接时长，单位：毫秒
-    public static final int CONNECT_TIME_OUT = 60 * 1000;
-    /**
-     * 设缓存有效期为两天
-     */
+    /** 读超时长，单位：毫秒 */
+    public static int READ_TIME_OUT = 60 * 1000;
+    /** 连接时长，单位：毫秒 */
+    public static int CONNECT_TIME_OUT = 60 * 1000;
+    /** 设缓存有效期为两天 */
     private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
 
     private static volatile Retrofit retrofit;
+    /** 加解密监听 */
+    public static EncryptListener encryptListener;
+    /** json key */
+    public static String jsonKey = "param";
 
 
     public static <T> T createApi(Class<T> paramClass) {
@@ -64,6 +71,11 @@ public class Api {
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .setLenient()// json宽松
+                    .enableComplexMapKeySerialization()//支持Map的key为复杂对象的形式
+                    .serializeNulls() //智能null
+                    .setPrettyPrinting()// 调教格式
+                    .disableHtmlEscaping() //默认是GSON把HTML 转义的
                     .create();
             retrofit = new Retrofit
                     .Builder()
@@ -104,22 +116,50 @@ public class Api {
         public Response intercept(Interceptor.Chain chain) throws IOException {
             Request req = chain.request();
             String cacheControl = req.cacheControl().toString();
+            RequestBody requestBody = req.body();
+            Map<String, Object> formMap = new HashMap<>();;
+            if (requestBody instanceof FormBody) {
+                FormBody formBody = (FormBody) requestBody;
+                // 从 formBody 中拿到请求参数，放入 formMap 中
+                for (int i = 0; i < formBody.size(); i++) {
+                    formMap.put(formBody.name(i), formBody.value(i));
+                }
+                LogUtils.e("request= "+req.toString()+"  param= "+formMap.toString());
+            }
             //获取header参数
-            String lock = req.header("lock");
-            //TODO 对请求参数进行加密处理
-
+            String needEncrypt = req.header("encrypt");
+            //对请求参数进行加密处理
+            if (!StringUtils.isEmpty(needEncrypt)&&"yes".equals(needEncrypt)){
+                //加密
+                String jsonParam = encryptListener.onEncrypt(formMap);
+                // 重新修改 body 的内容
+                requestBody = new FormBody.Builder().add(jsonKey, jsonParam).build();
+                if (requestBody != null) {
+                    req = req.newBuilder()
+                            .post(requestBody)
+                            .build();
+                }
+            }
             if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
                 req = req.newBuilder()
                         .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
                         .build();
             }
-            LogUtils.e("req= "+req.toString());
-            Response originalResponse = chain.proceed(req);
-            LogUtils.e("response= "+originalResponse.body().string());
-            if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
-                //TODO 只要加密的请求需要解密
 
-                return  originalResponse;
+            Response originalResponse = chain.proceed(req);
+            String response = originalResponse.body().string();
+            if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
+                //只要加密的请求需要解密
+                if (!StringUtils.isEmpty(needEncrypt)&&"yes".equals(needEncrypt)){
+                    String newBody = encryptListener.onDecrypt(response);
+                    LogUtils.e("response= "+newBody);
+                    Response res = originalResponse.newBuilder().body(ResponseBody.create(null, newBody)).build();
+                    return res;
+                }else {
+                    LogUtils.e("response= "+response);
+                    Response res = originalResponse.newBuilder().body(ResponseBody.create(null, response)).build();
+                    return res;
+                }
             } else {
                 return originalResponse.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC)
@@ -131,6 +171,17 @@ public class Api {
     };
 
 
+    public static void setReadTimeOut(int readTimeOut) {
+        READ_TIME_OUT = readTimeOut;
+    }
+
+    public static void setConnectTimeOut(int connectTimeOut) {
+        CONNECT_TIME_OUT = connectTimeOut;
+    }
+
+    public static void setEncryptListener(EncryptListener encryptListener) {
+        Api.encryptListener = encryptListener;
+    }
 
     private static OkHttpClient getTrustAllSSLClient(OkHttpClient client) {
         client = OkHttpClientUtil.getTrustAllSSLClient(client);
@@ -150,9 +201,9 @@ public class Api {
      */
     public static List<MultipartBody.Part> filesToMultipartBodyParts(List<File> files) {
         List<MultipartBody.Part> parts = new ArrayList<>(files.size());
-        for (File file : files) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("multipartFiles", file.getName(), requestBody);
+        for (int i = 0;i<files.size();i++) {
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), files.get(i));
+            MultipartBody.Part part = MultipartBody.Part.createFormData("multipartFiles"+i,  files.get(i).getName(), requestBody);
             parts.add(part);
         }
         return parts;

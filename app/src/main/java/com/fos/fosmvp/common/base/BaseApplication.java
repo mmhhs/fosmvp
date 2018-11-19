@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.fos.fosmvp.common.start.FosMvpManager;
+import com.fos.fosmvp.start.FosMvpManager;
 import com.fos.fosmvp.common.utils.LogUtils;
 
 /**

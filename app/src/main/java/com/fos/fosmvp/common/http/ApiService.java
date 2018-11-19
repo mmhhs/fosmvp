@@ -2,7 +2,7 @@ package com.fos.fosmvp.common.http;
 
 import com.fos.fosmvp.common.base.BaseResponse;
 import com.fos.fosmvp.entity.login.UserEntity;
-import com.fos.fosmvp.common.start.FosMvpManager;
+import com.fos.fosmvp.start.FosMvpManager;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +24,7 @@ import retrofit2.http.Query;
 public interface ApiService {
     //登录
     @FormUrlEncoded
+    @Headers("encrypt:yes")
     @POST("getLoginMember.action")
     Observable<BaseResponse<UserEntity>> login(@FieldMap Map<String, String> map);
 
@@ -33,7 +34,7 @@ public interface ApiService {
 
     //提交开通车联网
     @Multipart
-    @Headers("lock:yes")
+    @Headers("encrypt:yes")
     @POST("insertBindingCar.action")
     Observable<BaseResponse> insertBindingCar(@PartMap Map<String, RequestBody> map, @Part List<MultipartBody.Part> parts);
 

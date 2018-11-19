@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fos.fosmvp.R;
+import com.fos.fosmvp.start.FosMvpManager;
 
 /**
  * 加载、空、错误视图
@@ -25,7 +26,7 @@ public class LoadViewUtil {
     private View mParentView;//内容父视图
 
     private View mView;
-    private LinearLayout loadingView;//加载视图
+    private LinearLayout layoutLoading;//加载视图
     private LinearLayout layoutError;//错误视图
     private ImageView imgIcon;//图标
     private TextView txtTip;//提示
@@ -116,7 +117,7 @@ public class LoadViewUtil {
     private void initView() {
         if (mView == null) {
             mView = mInFlater.inflate(R.layout.item_load, null);
-            loadingView = (LinearLayout) mView.findViewById(R.id.layout_loading);
+            layoutLoading = (LinearLayout) mView.findViewById(R.id.layout_loading);
             layoutError = (LinearLayout) mView.findViewById(R.id.layout_error);
             imgIcon = (ImageView) mView.findViewById(R.id.img_icon);
             txtTip = (TextView) mView.findViewById(R.id.txt_tip);
@@ -215,7 +216,7 @@ public class LoadViewUtil {
         mState = state;
         mView.setVisibility(View.GONE);
         mParentView.setVisibility(View.GONE);
-        loadingView.setVisibility(View.GONE);
+        layoutLoading.setVisibility(View.GONE);
         layoutError.setVisibility(View.GONE);
         switch (mState) {
             case STATE_ERROR:
@@ -230,7 +231,8 @@ public class LoadViewUtil {
                 break;
             case STATE_LOADING:
                 mView.setVisibility(View.VISIBLE);
-                loadingView.setVisibility(View.VISIBLE);
+                layoutLoading.setVisibility(View.VISIBLE);
+                txtLoadingTip.setText(FosMvpManager.TASK_LOADING);
                 break;
             case STATE_CONTENT:
                 mParentView.setVisibility(View.VISIBLE);
