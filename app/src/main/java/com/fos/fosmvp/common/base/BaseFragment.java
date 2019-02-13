@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import com.fos.fosmvp.common.baserx.RxManager;
 import com.fos.fosmvp.common.utils.TUtil;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+
 
 /**
  * 基类fragment
@@ -23,7 +22,7 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     public T mPresenter;
     public E mModel;
     public RxManager mRxManager;
-    public Unbinder mUnbinder;
+//    public Unbinder mUnbinder;
 
     @Nullable
     @Override
@@ -45,7 +44,7 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
         {
             parent.removeView(rootView);
         }
-        mUnbinder = ButterKnife.bind(this, rootView);
+//        mUnbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -54,11 +53,11 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     @Override
     public void onResume() {
         super.onResume();
-        try {
-            mUnbinder = ButterKnife.bind(this, rootView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mUnbinder = ButterKnife.bind(this, rootView);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -70,54 +69,16 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     //初始化view
     protected abstract void initView(Bundle savedInstanceState);
 
-    public void initPresenter2(){
+    public void setPresenter(){
         mPresenter.setViewModel(this,mModel);
     }
 
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls) {
-        startActivity(cls, null);
-    }
-
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, int requestCode) {
-        startActivityForResult(cls, null, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, Bundle bundle,
-                                       int requestCode) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         try {
-            mUnbinder.unbind();//释放所有绑定的view
+//            mUnbinder.unbind();//释放所有绑定的view
             if (mPresenter != null)
                 mPresenter.onDestroy();
             mRxManager.clear();

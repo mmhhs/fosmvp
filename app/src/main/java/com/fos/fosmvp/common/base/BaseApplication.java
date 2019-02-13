@@ -18,8 +18,6 @@ public class BaseApplication extends Application implements Application.Activity
     public void onCreate() {
         super.onCreate();
         baseApplication = this;
-        FosMvpManager.init();
-        LogUtils.e("---------------start fosmvp----------------"+baseApplication);
     }
 
     public static Context getAppContext() {

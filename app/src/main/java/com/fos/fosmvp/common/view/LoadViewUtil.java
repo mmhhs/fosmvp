@@ -14,6 +14,7 @@ import com.fos.fosmvp.start.FosMvpManager;
 /**
  * 加载、空、错误视图
  * showStyle 类型：0：视图内加载；1：弹窗加载
+ * TODO 优化图片资源配置
  */
 public class LoadViewUtil {
     public static final int STATE_ERROR = 0x01;//错误状态

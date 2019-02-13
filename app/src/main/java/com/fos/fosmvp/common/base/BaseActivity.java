@@ -9,8 +9,6 @@ import com.fos.fosmvp.common.baserx.RxManager;
 import com.fos.fosmvp.common.utils.AppManager;
 import com.fos.fosmvp.common.utils.TUtil;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 基类Activity
@@ -21,7 +19,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public Context mContext;
     public RxManager mRxManager;
     private boolean isConfigChange = false;
-    public Unbinder mUnbinder;
+//    public Unbinder mUnbinder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         isConfigChange = false;
         mRxManager = new RxManager();
         setContentView(getLayoutId());
-        mUnbinder = ButterKnife.bind(this);
+//        mUnbinder = ButterKnife.bind(this);
         mContext = this;
         mPresenter = TUtil.getT(this, 0);
         mModel = TUtil.getT(this, 1);
@@ -53,6 +51,9 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     //初始化view
     public abstract void initView(Bundle savedInstanceState);
 
+    public void setPresenter(){
+        mPresenter.setViewModel(this,mModel);
+    }
 
     @Override
     protected void onResume() {
@@ -83,7 +84,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             if (!isConfigChange) {
                 AppManager.getAppManager().finishActivity(this);
             }
-            mUnbinder.unbind();
+//            mUnbinder.unbind();
         } catch (Exception e) {
             e.printStackTrace();
         }

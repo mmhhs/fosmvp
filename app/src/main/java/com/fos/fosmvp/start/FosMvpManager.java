@@ -1,6 +1,7 @@
 package com.fos.fosmvp.start;
 
 import com.fos.fosmvp.common.http.Api;
+import com.fos.fosmvp.common.http.EncryptListener;
 import com.fos.fosmvp.common.utils.LogUtils;
 
 /**
@@ -24,8 +25,8 @@ public class FosMvpManager {
      * 初始化框架
      *
      */
-    public static void init(){
-        Api.initialize();
+    public static void init(String prefixUrl){
+        Api.initialize(prefixUrl);
         LogUtils.setShowLogEnabled(DEBUGGING);
 
     }
@@ -37,5 +38,23 @@ public class FosMvpManager {
     public static void setDEBUGGING(boolean DEBUGGING) {
         FosMvpManager.DEBUGGING = DEBUGGING;
         LogUtils.setShowLogEnabled(DEBUGGING);
+    }
+
+
+
+    public static void setReadTimeOut(int readTimeOut) {
+        Api.setReadTimeOut(readTimeOut);
+    }
+
+    public static void setConnectTimeOut(int connectTimeOut) {
+        Api.setConnectTimeOut(connectTimeOut);
+    }
+
+    public static void setApiParamKey(String key) {
+        Api.setJsonKey(key);
+    }
+
+    public static void setEncryptListener(EncryptListener encryptListener) {
+        Api.setEncryptListener(encryptListener);
     }
 }

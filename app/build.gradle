@@ -1,21 +1,22 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 //apply plugin: 'com.jakewharton.butterknife'//for library
 //apply plugin: 'android-apt'//for library
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.fos.fosmvp"
+//        applicationId "com.fos.fosmvp"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
-        ndk {
-            //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
-        }
+        versionName "1.1.0"
+//        ndk {
+//            //选择要添加的对应cpu类型的.so库。
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//        }
     }
     buildTypes {
         release {
@@ -35,17 +36,24 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.4.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
-    compile 'com.jakewharton:butterknife:8.6.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+//    compile 'com.jakewharton:butterknife:8.6.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 //    apt 'com.jakewharton:butterknife-compiler:8.6.0' //for library
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'io.reactivex.rxjava2:rxjava:2.1.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-    compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
+
 }
 
-
+publish {
+    userOrg = 'mmhhs'//bintray.com用户名
+    groupId = 'com.fos'//jcenter上的路径
+    artifactId = 'fosmvp'//项目名称
+    publishVersion = '1.1.0'//版本号
+    desc = 'MVP framework written in java, retrofit2+rxjava2'
+    website = 'https://github.com/mmhhs/fosmvp.git'
+}
 
 
 

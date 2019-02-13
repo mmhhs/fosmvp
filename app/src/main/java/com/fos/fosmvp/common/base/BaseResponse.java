@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 封装服务器返回数据
- *
+ * TODO 优化参数及请求成功判断
  */
 public class BaseResponse<T>  implements Serializable {
     public String code="-1";

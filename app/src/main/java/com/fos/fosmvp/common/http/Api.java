@@ -50,7 +50,7 @@ public class Api {
     /** 连接时长，单位：毫秒 */
     public static int CONNECT_TIME_OUT = 60 * 1000;
     /** 设缓存有效期为两天 */
-    private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
+    public static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
 
     private static volatile Retrofit retrofit;
     /** 加解密监听 */
@@ -63,8 +63,8 @@ public class Api {
         return retrofit.create(paramClass);
     }
 
-    public static void initialize() {
-        initRetrofit(FosMvpManager.PREFIX_URL);
+    public static void initialize(String prefixUrl) {
+        initRetrofit(prefixUrl);
     }
 
     private static void initRetrofit(String baseUrl) {
@@ -171,17 +171,6 @@ public class Api {
     };
 
 
-    public static void setReadTimeOut(int readTimeOut) {
-        READ_TIME_OUT = readTimeOut;
-    }
-
-    public static void setConnectTimeOut(int connectTimeOut) {
-        CONNECT_TIME_OUT = connectTimeOut;
-    }
-
-    public static void setEncryptListener(EncryptListener encryptListener) {
-        Api.encryptListener = encryptListener;
-    }
 
     private static OkHttpClient getTrustAllSSLClient(OkHttpClient client) {
         client = OkHttpClientUtil.getTrustAllSSLClient(client);
@@ -208,4 +197,21 @@ public class Api {
         }
         return parts;
     }
+
+    public static void setJsonKey(String jsonKey) {
+        Api.jsonKey = jsonKey;
+    }
+
+    public static void setReadTimeOut(int readTimeOut) {
+        READ_TIME_OUT = readTimeOut;
+    }
+
+    public static void setConnectTimeOut(int connectTimeOut) {
+        CONNECT_TIME_OUT = connectTimeOut;
+    }
+
+    public static void setEncryptListener(EncryptListener encryptListener) {
+        Api.encryptListener = encryptListener;
+    }
+
 }
