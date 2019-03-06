@@ -27,6 +27,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         isConfigChange = false;
         mRxManager = new RxManager();
         setContentView(getLayoutId());
+        AppManager.getAppManager().addActivity(this);
 //        mUnbinder = ButterKnife.bind(this);
         mContext = this;
         mPresenter = TUtil.getT(this, 0);
@@ -35,7 +36,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             mPresenter.mContext = this;
         }
         this.initPresenter();
-        this.initView(savedInstanceState);
+//        this.initView(savedInstanceState);
     }
 
 

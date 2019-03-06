@@ -1,6 +1,5 @@
 package com.fos.fosmvp.common.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,7 +36,7 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
                 mPresenter.mContext=this.getActivity();
             }
             initPresenter();
-            initView(savedInstanceState);
+//            initView(savedInstanceState);
         }
         ViewGroup parent = (ViewGroup) rootView.getParent();
         if (parent != null)
