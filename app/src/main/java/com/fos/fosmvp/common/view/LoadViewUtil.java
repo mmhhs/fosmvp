@@ -79,19 +79,20 @@ public class LoadViewUtil {
     }
 
     private void init() {
-        if (contentView == null) {
-            throw new NullPointerException("view is null.");
-        }
-
-        mInFlater = LayoutInflater.from(mContext);
-
-        if (!(contentView instanceof ViewGroup)) {
-            mParentView = (View) contentView.getParent();
-        } else {
-            mParentView = contentView;
-        }
         switch (showStyle) {
             case 0:
+                if (contentView == null) {
+                    throw new NullPointerException("view is null.");
+                }
+
+                mInFlater = LayoutInflater.from(mContext);
+
+                if (!(contentView instanceof ViewGroup)) {
+                    mParentView = (View) contentView.getParent();
+                } else {
+                    mParentView = contentView;
+                }
+
                 if (mParentView == null) {
                     throw new ExceptionInInitializerError("view's parent is null.");
                 }
@@ -175,7 +176,9 @@ public class LoadViewUtil {
                 showView(STATE_LOADING);
                 break;
             case 1:
-                loadingDialog.show();
+                if (!loadingDialog.isShowing()){
+                    loadingDialog.show();
+                }
                 break;
         }
     }
@@ -189,7 +192,9 @@ public class LoadViewUtil {
                 showContentView();
                 break;
             case 1:
-                loadingDialog.hide();
+                if (loadingDialog.isShowing()){
+                    loadingDialog.hide();
+                }
                 break;
         }
     }
