@@ -23,7 +23,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/shape_loading"
+            android:indeterminateDrawable="@drawable/fosmvp_shape_loading"
             android:indeterminateOnly="true" />
 
         <TextView

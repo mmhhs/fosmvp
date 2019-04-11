@@ -25,7 +25,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/shape_loading"
+            android:indeterminateDrawable="@drawable/fosmvp_shape_loading"
             android:indeterminateOnly="true" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:id="@+id/img_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/ic_error"
+            android:background="@mipmap/fosmvp_ic_error"
             />
 
         <TextView

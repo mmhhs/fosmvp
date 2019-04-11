@@ -87,7 +87,7 @@ public class LoadingDialog extends Dialog {
 
         public LoadingDialog create() {
             LayoutInflater inflater = LayoutInflater.from(context);
-            View view = inflater.inflate(R.layout.item_loading_dialog, null);
+            View view = inflater.inflate(R.layout.fosmvp_item_loading_dialog, null);
             LoadingDialog loadingDailog = new LoadingDialog(context, R.style.LoadingDialogStyle);
             TextView msgText = (TextView) view.findViewById(R.id.txt_loading_tip);
             if (isShowMessage) {

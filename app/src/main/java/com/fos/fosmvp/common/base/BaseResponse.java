@@ -10,6 +10,12 @@ public class BaseResponse<T>  implements Serializable {
     public String code="-1";
     public String msg;
     public T data;
+    public int error = -1;
+    public String result = "";
+    public String failNum;
+    public String recordCount;
+    public String totalMoney;
+    public String access_token;
 
     public String getCode() {
         return code;
@@ -33,6 +39,54 @@ public class BaseResponse<T>  implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getError() {
+        return error;
+    }
+
+    public void setError(int error) {
+        this.error = error;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getFailNum() {
+        return failNum;
+    }
+
+    public void setFailNum(String failNum) {
+        this.failNum = failNum;
+    }
+
+    public String getRecordCount() {
+        return recordCount;
+    }
+
+    public void setRecordCount(String recordCount) {
+        this.recordCount = recordCount;
+    }
+
+    public String getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(String totalMoney) {
+        this.totalMoney = totalMoney;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 
     /**

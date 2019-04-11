@@ -118,7 +118,7 @@ public class LoadViewUtil {
 
     private void initView() {
         if (mView == null) {
-            mView = mInFlater.inflate(R.layout.item_load, null);
+            mView = mInFlater.inflate(R.layout.fosmvp_item_load, null);
             layoutLoading = (LinearLayout) mView.findViewById(R.id.layout_loading);
             layoutError = (LinearLayout) mView.findViewById(R.id.layout_error);
             imgIcon = (ImageView) mView.findViewById(R.id.img_icon);
@@ -228,12 +228,12 @@ public class LoadViewUtil {
             case STATE_ERROR:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
-                setIcon(R.mipmap.ic_error);
+                setIcon(R.mipmap.fosmvp_ic_error);
                 break;
             case STATE_EMPTY:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
-                setIcon(R.mipmap.ic_empty);
+                setIcon(R.mipmap.fosmvp_ic_empty);
                 break;
             case STATE_LOADING:
                 mView.setVisibility(View.VISIBLE);
