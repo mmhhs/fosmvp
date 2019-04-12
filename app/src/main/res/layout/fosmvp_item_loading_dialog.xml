@@ -23,7 +23,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/fosmvp_shape_loading"
+            android:indeterminateDrawable="@drawable/fosmvp_shape_loading_white"
             android:indeterminateOnly="true" />
 
         <TextView
@@ -32,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="loading..."
-            android:textColor="#f0f0f0"
-            android:textSize="15sp" />
+            android:textColor="@color/bg_white"
+            android:textSize="15sp"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

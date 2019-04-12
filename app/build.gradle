@@ -46,7 +46,7 @@ publish {
     userOrg = 'mmhhs'//bintray.com用户名
     groupId = 'com.fos'//jcenter上的路径
     artifactId = 'fosmvp'//项目名称
-    publishVersion = '1.1.5'//版本号
+    publishVersion = '1.1.6'//版本号
     desc = 'MVP framework written in java, retrofit2+rxjava2'
     website = 'https://github.com/mmhhs/fosmvp.git'
 }
