@@ -78,9 +78,14 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
         }
 
         //TODO 关闭加载框
-        if (showDialog&&showStyle==0){
-            loadViewUtil.showErrorView(errorMsg);
+        if (showDialog){
+            if (showStyle==0){
+                loadViewUtil.showErrorView(errorMsg);
+            } else {
+                loadViewUtil.hideLoadView();
+            }
         }
+
     }
 
     /**

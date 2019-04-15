@@ -176,7 +176,7 @@ public class LoadViewUtil {
                 showView(STATE_LOADING);
                 break;
             case 1:
-                if (!loadingDialog.isShowing()){
+                if (loadingDialog!=null&&!loadingDialog.isShowing()){
                     loadingDialog.show();
                 }
                 break;
@@ -192,7 +192,7 @@ public class LoadViewUtil {
                 showContentView();
                 break;
             case 1:
-                if (loadingDialog.isShowing()){
+                if (loadingDialog!=null&&loadingDialog.isShowing()){
                     loadingDialog.hide();
                 }
                 break;
