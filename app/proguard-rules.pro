@@ -158,3 +158,10 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+
+# mvp
+-keep class com.fos.fosmvp.common.base.** { *; }
+-keep class com.fos.fosmvp.common.baserx.** { *; }
+-keep class com.fos.fosmvp.common.http.** { *; }
+-keep class com.fos.fosmvp.common.utils.** { *; }
+-keep class com.fos.fosmvp.common.view.** { *; }

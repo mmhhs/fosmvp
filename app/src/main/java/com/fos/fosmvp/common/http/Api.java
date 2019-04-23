@@ -7,7 +7,6 @@ import com.fos.fosmvp.common.base.BaseApplication;
 import com.fos.fosmvp.common.utils.LogUtils;
 import com.fos.fosmvp.common.utils.NetWorkUtils;
 import com.fos.fosmvp.common.utils.StringUtils;
-import com.fos.fosmvp.start.FosMvpManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -118,6 +117,8 @@ public class Api {
             String cacheControl = req.cacheControl().toString();
             RequestBody requestBody = req.body();
             Map<String, Object> formMap = new HashMap<>();;
+            //获取header参数
+            String needEncrypt = req.header("encrypt");
             if (requestBody instanceof FormBody) {
                 FormBody formBody = (FormBody) requestBody;
                 // 从 formBody 中拿到请求参数，放入 formMap 中
@@ -125,21 +126,21 @@ public class Api {
                     formMap.put(formBody.name(i), formBody.value(i));
                 }
                 LogUtils.e("request= "+req.toString()+"  param= "+formMap.toString());
-            }
-            //获取header参数
-            String needEncrypt = req.header("encrypt");
-            //对请求参数进行加密处理
-            if (!StringUtils.isEmpty(needEncrypt)&&"yes".equals(needEncrypt)){
-                //加密
-                String jsonParam = encryptListener.onEncrypt(formMap);
-                // 重新修改 body 的内容
-                requestBody = new FormBody.Builder().add(jsonKey, jsonParam).build();
-                if (requestBody != null) {
-                    req = req.newBuilder()
-                            .post(requestBody)
-                            .build();
+
+                //对请求参数进行加密处理
+                if (!StringUtils.isEmpty(needEncrypt)&&"yes".equals(needEncrypt)){
+                    //加密
+                    String jsonParam = encryptListener.onEncrypt(formMap);
+                    // 重新修改 body 的内容
+                    requestBody = new FormBody.Builder().add(jsonKey, jsonParam).build();
+                    if (requestBody != null) {
+                        req = req.newBuilder()
+                                .post(requestBody)
+                                .build();
+                    }
                 }
             }
+
             if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
                 req = req.newBuilder()
                         .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
