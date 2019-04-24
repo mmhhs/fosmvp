@@ -184,6 +184,10 @@ public class Api {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public static Observable setObservable(Observable observable) {
+        return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
     /**
      * 上传文件时使用
      * @param files
