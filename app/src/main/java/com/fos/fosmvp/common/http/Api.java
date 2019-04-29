@@ -148,16 +148,17 @@ public class Api {
             }
 
             Response originalResponse = chain.proceed(req);
+            String responseStr = originalResponse.toString();
             String response = originalResponse.body().string();
             if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
                 //只要加密的请求需要解密
                 if (!StringUtils.isEmpty(needEncrypt)&&"yes".equals(needEncrypt)){
                     String newBody = encryptListener.onDecrypt(response);
-                    LogUtils.e("response= "+newBody);
+                    LogUtils.e("response= "+responseStr+" return= "+newBody);
                     Response res = originalResponse.newBuilder().body(ResponseBody.create(null, newBody)).build();
                     return res;
                 }else {
-                    LogUtils.e("response= "+response);
+                    LogUtils.e("response= "+responseStr+" return= "+response);
                     Response res = originalResponse.newBuilder().body(ResponseBody.create(null, response)).build();
                     return res;
                 }

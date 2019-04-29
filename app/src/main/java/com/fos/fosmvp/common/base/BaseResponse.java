@@ -94,7 +94,7 @@ public class BaseResponse<T>  implements Serializable {
      * @return
      */
     public boolean isSucceed(){
-        if(code.equals("0"))
+        if(code.equals("0")|| error == 0 || result.equals("0"))
             return true;
         else
             return false;
