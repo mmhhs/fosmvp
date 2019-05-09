@@ -139,6 +139,8 @@ public class Api {
                                 .build();
                     }
                 }
+            }else {
+                LogUtils.e("request= "+req.toString());
             }
 
             if (!NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {

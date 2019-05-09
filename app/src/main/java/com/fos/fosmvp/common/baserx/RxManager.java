@@ -24,7 +24,9 @@ public class RxManager {
      * 单个presenter生命周期结束，取消订阅和所有rxbus观察
      */
     public void clear() {
+        mDisposables.dispose();// 取消所有订阅
         mDisposables.clear();// 取消所有订阅
+
     }
 
 }

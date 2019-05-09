@@ -44,6 +44,7 @@ public class LoadViewUtil {
 
     private int showStyle = 0;//类型：0：视图内加载；1：弹窗加载
     private LoadingDialog loadingDialog;
+    private LoadingDialog.Builder loadBuilder;
 
     public LoadViewUtil(Context mContext, View contentView,String message,int showStyle) {
         this.mContext = mContext;
@@ -108,9 +109,8 @@ public class LoadViewUtil {
                 showView(STATE_CONTENT);
                 break;
             case 1:
-                LoadingDialog.Builder loadBuilder = new LoadingDialog.Builder(mContext)
+                loadBuilder = new LoadingDialog.Builder(mContext)
                         .setMessage(message);
-                loadingDialog = loadBuilder.create();
                 break;
         }
 
@@ -176,6 +176,7 @@ public class LoadViewUtil {
                 showView(STATE_LOADING);
                 break;
             case 1:
+                loadingDialog = loadBuilder.create();
                 if (loadingDialog!=null&&!loadingDialog.isShowing()){
                     loadingDialog.show();
                 }
@@ -187,15 +188,19 @@ public class LoadViewUtil {
      * 隐藏加载
      */
     public void hideLoadView() {
-        switch (showStyle){
-            case 0:
-                showContentView();
-                break;
-            case 1:
-                if (loadingDialog!=null&&loadingDialog.isShowing()){
-                    loadingDialog.hide();
-                }
-                break;
+        try {
+            switch (showStyle){
+                case 0:
+                    showContentView();
+                    break;
+                case 1:
+                    if (loadingDialog!=null&&loadingDialog.isShowing()){
+                        loadingDialog.cancel();
+                    }
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
