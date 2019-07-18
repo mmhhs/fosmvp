@@ -21,7 +21,6 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     public T mPresenter;
     public E mModel;
     public RxManager mRxManager;
-//    public Unbinder mUnbinder;
 
     @Nullable
     @Override
@@ -36,14 +35,12 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
                 mPresenter.mContext=this.getActivity();
             }
             initPresenter();
-//            initView(savedInstanceState);
         }
         ViewGroup parent = (ViewGroup) rootView.getParent();
         if (parent != null)
         {
             parent.removeView(rootView);
         }
-//        mUnbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -52,11 +49,6 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     @Override
     public void onResume() {
         super.onResume();
-//        try {
-//            mUnbinder = ButterKnife.bind(this, rootView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
 
@@ -77,7 +69,6 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     public void onDestroyView() {
         super.onDestroyView();
         try {
-//            mUnbinder.unbind();//释放所有绑定的view
             if (mPresenter != null)
                 mPresenter.onDestroy();
             mRxManager.clear();

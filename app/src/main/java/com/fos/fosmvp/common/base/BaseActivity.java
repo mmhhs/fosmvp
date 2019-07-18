@@ -19,7 +19,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public Context mContext;
     public RxManager mRxManager;
     private boolean isConfigChange = false;
-//    public Unbinder mUnbinder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             mPresenter.mContext = this;
         }
         this.initPresenter();
-//        this.initView(savedInstanceState);
     }
 
 
@@ -85,7 +83,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             if (!isConfigChange) {
                 AppManager.getAppManager().finishActivity(this);
             }
-//            mUnbinder.unbind();
         } catch (Exception e) {
             e.printStackTrace();
         }

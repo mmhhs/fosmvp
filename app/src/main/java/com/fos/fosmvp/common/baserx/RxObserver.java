@@ -17,7 +17,7 @@ import io.reactivex.observers.DisposableObserver;
  */
 public abstract class RxObserver<T> extends DisposableObserver<T> {
     private Context mContext;
-    private boolean showDialog = true;//是否显示加载框
+    private boolean showDialog = false;//是否显示加载框
     private int showStyle = 1;//加载框类型：0：视图内加载；1：弹窗加载
     private String message;//加载提示文字
     private View contentView;//内容视图
@@ -68,6 +68,10 @@ public abstract class RxObserver<T> extends DisposableObserver<T> {
             _onError(FosMvpManager.TASK_NO_NETWORK);
             errorMsg = FosMvpManager.TASK_NO_NETWORK;
         } else if (e instanceof ServerException) {
+            //服务器
+            _onError(e.getMessage());
+            errorMsg = e.getMessage();
+        } else if (e instanceof Exception) {
             //服务器
             _onError(e.getMessage());
             errorMsg = e.getMessage();
