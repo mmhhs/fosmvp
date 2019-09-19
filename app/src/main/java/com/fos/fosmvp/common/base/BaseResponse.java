@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class BaseResponse<T>  implements Serializable {
     public String code="-1";
     public String msg;
+    public String message;
     public T data;
     public int error = -1;
     public String result = "";
@@ -16,6 +17,7 @@ public class BaseResponse<T>  implements Serializable {
     public String recordCount;
     public String totalMoney;
     public String access_token;
+    public String token;
 
     public String getCode() {
         return code;
@@ -89,12 +91,28 @@ public class BaseResponse<T>  implements Serializable {
         this.access_token = access_token;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     /**
      * 判断返回值是否成功
      * @return
      */
     public boolean isSucceed(){
-        if(code.equals("0")|| error == 0 || result.equals("0"))
+        if(code.equals("0")|| code.equals("200")|| error == 0 || result.equals("0"))
             return true;
         else
             return false;

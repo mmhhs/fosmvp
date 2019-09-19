@@ -27,8 +27,8 @@ public class LoadViewUtil {
     private View mParentView;//内容父视图
 
     private View mView;
-    private LinearLayout layoutLoading;//加载视图
-    private LinearLayout layoutError;//错误视图
+    public LinearLayout layoutLoading;//加载视图
+    public LinearLayout layoutError;//错误视图
     private ImageView imgIcon;//图标
     private TextView txtTip;//提示
     private TextView txtRetry;//重试

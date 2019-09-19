@@ -116,7 +116,7 @@ public class Api {
             Request req = chain.request();
             String cacheControl = req.cacheControl().toString();
             RequestBody requestBody = req.body();
-            Map<String, Object> formMap = new HashMap<>();;
+            Map<String, Object> formMap = new HashMap<>();
             //获取header参数
             String needEncrypt = req.header("encrypt");
             if (requestBody instanceof FormBody) {
