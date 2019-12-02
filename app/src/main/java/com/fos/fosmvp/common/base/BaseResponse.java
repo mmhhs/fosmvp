@@ -18,6 +18,7 @@ public class BaseResponse<T>  implements Serializable {
     public String totalMoney;
     public String access_token;
     public String token;
+    public String type="";
 
     public String getCode() {
         return code;
@@ -112,7 +113,7 @@ public class BaseResponse<T>  implements Serializable {
      * @return
      */
     public boolean isSucceed(){
-        if(code.equals("0")|| code.equals("200")|| error == 0 || result.equals("0"))
+        if(code.equals("0")|| code.equals("200")|| error == 0 || result.equals("0") || "success".equals(""+type))
             return true;
         else
             return false;

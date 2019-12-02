@@ -119,6 +119,7 @@ public class Api {
             Map<String, Object> formMap = new HashMap<>();
             //获取header参数
             String needEncrypt = req.header("encrypt");
+            String needFormatGson = req.header("toGson");
             if (requestBody instanceof FormBody) {
                 FormBody formBody = (FormBody) requestBody;
                 // 从 formBody 中拿到请求参数，放入 formMap 中

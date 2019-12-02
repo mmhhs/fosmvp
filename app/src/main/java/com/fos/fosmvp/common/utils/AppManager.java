@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -90,6 +91,7 @@ public class AppManager {
 
     public void finishExceptActivity(List<Class<?>> clss) {
         try {
+            List<Activity> activities = new ArrayList<>();
             for (Activity activity : activityStack) {
                 boolean isSave = false;
                 for (Class s : clss){
@@ -98,10 +100,14 @@ public class AppManager {
                     }
                 }
                 if (!isSave){
-                    finishActivity(activity);
+                    activities.add(activity);
+                    activity.finish();
                 }
-
             }
+            for (Activity activity : activities) {
+                activityStack.remove(activity);
+            }
+            activities.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,16 +116,21 @@ public class AppManager {
 
     public void finishExceptActivity(Class<?> cls) {
         try {
+            List<Activity> activities = new ArrayList<>();
             for (Activity activity : activityStack) {
                 boolean isSave = false;
                 if (activity.getClass().getSimpleName().equals(cls.getSimpleName())) {
                     isSave = true;
                 }
                 if (!isSave){
-                    finishActivity(activity);
+                    activities.add(activity);
+                    activity.finish();
                 }
-
             }
+            for (Activity activity : activities) {
+                activityStack.remove(activity);
+            }
+            activities.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
