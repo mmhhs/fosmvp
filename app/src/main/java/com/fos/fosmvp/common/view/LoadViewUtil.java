@@ -159,12 +159,67 @@ public class LoadViewUtil {
 
 
     /**
-     * 显示错误
-     * @param tip
+     * 显示错误视图
+     * @param tip 提示文字
      */
     public void showErrorView(String tip) {
         setTip(tip);
+        setIcon(R.mipmap.fosmvp_ic_error);
+        setOptionVisibility(false);
         showView(STATE_ERROR);
+    }
+
+    /**
+     * 显示错误视图
+     * @param tip 提示文字
+     * @param resId 提示图标
+     */
+    public void showErrorView(String tip,int resId) {
+        setTip(tip);
+        setIcon(resId);
+        setOptionVisibility(false);
+        showView(STATE_ERROR);
+    }
+
+    /**
+     * 显示错误视图
+     * @param tip 提示文字
+     * @param resId 提示图标
+     * @param showOption 是否显示操作按钮
+     * @param optionText 操作按钮文字
+     */
+    public void showErrorView(String tip,int resId,boolean showOption,String optionText) {
+        setTip(tip);
+        setIcon(resId);
+        setOptionVisibility(showOption);
+        setOptionText(optionText);
+        showView(STATE_ERROR);
+    }
+
+    /**
+     * 显示空视图
+     * @param tip 提示文字
+     */
+    public void showEmptyView(String tip) {
+        setTip(tip);
+        setIcon(R.mipmap.fosmvp_ic_empty);
+        setOptionVisibility(false);
+        showView(STATE_EMPTY);
+    }
+
+    /**
+     * 显示空视图
+     * @param tip 提示文字
+     * @param resId 提示图标
+     * @param showOption 是否显示操作按钮
+     * @param optionText 操作按钮文字
+     */
+    public void showEmptyView(String tip,int resId,boolean showOption,String optionText) {
+        setTip(tip);
+        setIcon(resId);
+        setOptionVisibility(showOption);
+        setOptionText(optionText);
+        showView(STATE_EMPTY);
     }
 
     /**
@@ -204,14 +259,7 @@ public class LoadViewUtil {
         }
     }
 
-    /**
-     * 显示空数据
-     * @param tip
-     */
-    public void showEmptyView(String tip) {
-        setTip(tip);
-        showView(STATE_EMPTY);
-    }
+
 
     /**
      * 显示正常
@@ -220,7 +268,7 @@ public class LoadViewUtil {
         showView(STATE_CONTENT);
     }
 
-    public void showView(int state) {
+    private void showView(int state) {
         if (mView == null) {
             return;
         }
@@ -251,27 +299,69 @@ public class LoadViewUtil {
         }
     }
 
+    /**
+     * 设置错误/空提示文字
+     * @param tip
+     */
     public void setTip(String tip) {
         txtTip.setText(tip);
     }
 
+    /**
+     * 设置加载文字
+     * @param tip
+     */
     public void setLoadText(String tip) {
         txtLoadingTip.setText(tip);
     }
 
+    /**
+     * 设置文本
+     * @param textView
+     * @param tip
+     */
     public void setText(TextView textView, String tip) {
         textView.setText(tip);
     }
 
+    /**
+     * 设置提示图标
+     * @param resourceId
+     */
     public void setIcon(int resourceId) {
         imgIcon.setBackgroundResource(resourceId);
     }
 
+    /**
+     * 设置视图可见
+     * @param view
+     * @param visible
+     */
     public void setViewsVisibility(View view, boolean visible) {
         if (visible) {
             view.setVisibility(View.VISIBLE);
         } else {
             view.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置操作按钮文字
+     * @param optionText
+     */
+    public void setOptionText(String optionText){
+        txtOpt.setText(optionText);
+    }
+
+    /**
+     * 设置操作按钮可见
+     * @param visible
+     */
+    public void setOptionVisibility(boolean visible) {
+        if (visible) {
+            txtOpt.setVisibility(View.VISIBLE);
+        } else {
+            txtOpt.setVisibility(View.GONE);
         }
     }
 
