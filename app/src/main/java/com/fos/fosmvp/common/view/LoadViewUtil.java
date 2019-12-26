@@ -163,10 +163,7 @@ public class LoadViewUtil {
      * @param tip 提示文字
      */
     public void showErrorView(String tip) {
-        setTip(tip);
-        setIcon(R.mipmap.fosmvp_ic_error);
-        setOptionVisibility(false);
-        showView(STATE_ERROR);
+        showErrorView(tip,R.mipmap.fosmvp_ic_error,false,"");
     }
 
     /**
@@ -175,10 +172,7 @@ public class LoadViewUtil {
      * @param resId 提示图标
      */
     public void showErrorView(String tip,int resId) {
-        setTip(tip);
-        setIcon(resId);
-        setOptionVisibility(false);
-        showView(STATE_ERROR);
+        showErrorView(tip,resId,false,"");
     }
 
     /**
@@ -190,9 +184,17 @@ public class LoadViewUtil {
      */
     public void showErrorView(String tip,int resId,boolean showOption,String optionText) {
         setTip(tip);
-        setIcon(resId);
-        setOptionVisibility(showOption);
-        setOptionText(optionText);
+        if (tip.equals(FosMvpManager.TASK_NO_NETWORK)){
+            setIcon(R.mipmap.fosmvp_ic_wwl);
+            setOptionVisibility(true);
+            setOptionText(mContext.getString(R.string.fm_cxjz));
+            txtOpt.setClickable(false);
+        }else {
+            setIcon(resId);
+            setOptionVisibility(showOption);
+            setOptionText(optionText);
+            txtOpt.setClickable(true);
+        }
         showView(STATE_ERROR);
     }
 
@@ -201,10 +203,16 @@ public class LoadViewUtil {
      * @param tip 提示文字
      */
     public void showEmptyView(String tip) {
-        setTip(tip);
-        setIcon(R.mipmap.fosmvp_ic_empty);
-        setOptionVisibility(false);
-        showView(STATE_EMPTY);
+        showEmptyView(tip,R.mipmap.fosmvp_ic_empty,false,"");
+    }
+
+    /**
+     * 显示空视图
+     * @param tip 提示文字
+     * @param resId 提示图标
+     */
+    public void showEmptyView(String tip,int resId) {
+        showEmptyView(tip,resId,false,"");
     }
 
     /**
@@ -219,6 +227,7 @@ public class LoadViewUtil {
         setIcon(resId);
         setOptionVisibility(showOption);
         setOptionText(optionText);
+        txtOpt.setClickable(true);
         showView(STATE_EMPTY);
     }
 
@@ -281,12 +290,10 @@ public class LoadViewUtil {
             case STATE_ERROR:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
-                setIcon(R.mipmap.fosmvp_ic_error);
                 break;
             case STATE_EMPTY:
                 mView.setVisibility(View.VISIBLE);
                 layoutError.setVisibility(View.VISIBLE);
-                setIcon(R.mipmap.fosmvp_ic_empty);
                 break;
             case STATE_LOADING:
                 mView.setVisibility(View.VISIBLE);

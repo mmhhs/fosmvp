@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FosMvp</string>
+    <string name="fm_mysj">当前没有数据</string>
+    <string name="fm_djcs">请点击重试</string>
+    <string name="fm_cxjz">重新加载</string>
 </resources>
