@@ -19,6 +19,7 @@ public class BaseResponse<T>  implements Serializable {
     public String access_token;
     public String token;
     public String type="";
+    public boolean needConfirm;//是否需要验证
 
     public String getCode() {
         return code;
@@ -106,6 +107,22 @@ public class BaseResponse<T>  implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isNeedConfirm() {
+        return needConfirm;
+    }
+
+    public void setNeedConfirm(boolean needConfirm) {
+        this.needConfirm = needConfirm;
     }
 
     /**

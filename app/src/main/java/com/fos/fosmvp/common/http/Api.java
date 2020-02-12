@@ -140,6 +140,16 @@ public class Api {
                                 .build();
                     }
                 }
+                if ("yes".equals(""+needFormatGson)){
+                    String json = new Gson().toJson(formMap);
+                    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                    requestBody = RequestBody.create(JSON, json);
+                    if (requestBody != null) {
+                        req = req.newBuilder()
+                                .post(requestBody)
+                                .build();
+                    }
+                }
             }else {
                 LogUtils.e("request= "+req.toString());
             }
