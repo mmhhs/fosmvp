@@ -145,9 +145,16 @@ public class Api {
                     MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                     requestBody = RequestBody.create(JSON, json);
                     if (requestBody != null) {
+                        LogUtils.e("Authorization= "+formMap.get("Authorization")+" json= "+json);
                         req = req.newBuilder()
                                 .post(requestBody)
+                                .addHeader("Content-type","application/json; charset=UTF-8")
+                                .addHeader("company-id",""+formMap.get("companyId"))
+                                .addHeader("owner-code",""+formMap.get("ownerCode"))
+                                .addHeader("warehouse-code",""+formMap.get("warehouse"))
+                                .addHeader("Authorization",""+formMap.get("Authorization"))
                                 .build();
+
                     }
                 }
             }else {
@@ -173,6 +180,7 @@ public class Api {
                 }else {
                     LogUtils.e("response= "+responseStr+" return= "+response);
                     Response res = originalResponse.newBuilder().body(ResponseBody.create(null, response)).build();
+                    LogUtils.e("res.code= "+res.code());
                     return res;
                 }
             } else {

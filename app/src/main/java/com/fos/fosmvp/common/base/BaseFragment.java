@@ -1,8 +1,6 @@
 package com.fos.fosmvp.common.base;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,8 @@ import android.view.ViewGroup;
 import com.fos.fosmvp.common.baserx.RxManager;
 import com.fos.fosmvp.common.utils.TUtil;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 
 /**

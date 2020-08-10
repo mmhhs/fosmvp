@@ -3,11 +3,12 @@ package com.fos.fosmvp.common.base;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.fos.fosmvp.common.baserx.RxManager;
 import com.fos.fosmvp.common.utils.AppManager;
 import com.fos.fosmvp.common.utils.TUtil;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
